@@ -1,19 +1,24 @@
-import { Controller, Get, Post } from "@nestjs/common"
+import { Body, Controller, Get, Param, Post } from "@nestjs/common"
+
+import { CreateMessageRequest } from "../models"
+import { MessagesService } from "../services"
 
 @Controller("messages")
 export class MessagesController {
+  constructor(private service: MessagesService) {}
+
   @Get()
   findAll() {
-    return "find all messages"
+    return this.service.findAll()
   }
 
   @Get("/:id")
-  findOne() {
-    return "find one messages"
+  findOne(@Param("id") id: string) {
+    return this.service.findOne(id)
   }
 
   @Post()
-  create() {
-    return "create message"
+  create(@Body() request: CreateMessageRequest) {
+    return this.service.create(request)
   }
 }
