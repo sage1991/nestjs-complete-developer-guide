@@ -1,5 +1,6 @@
-import { Module } from "@nestjs/common"
+import { Module, ValidationPipe } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
+import { APP_PIPE } from "@nestjs/core"
 
 import { UsersModule } from "./users"
 import { ReportsModule } from "./reports"
@@ -16,6 +17,12 @@ import { ReportEntity } from "./reports/entities"
     }),
     UsersModule,
     ReportsModule
+  ],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useFactory: () => new ValidationPipe({ whitelist: true })
+    }
   ]
 })
 export class AppModule {}
