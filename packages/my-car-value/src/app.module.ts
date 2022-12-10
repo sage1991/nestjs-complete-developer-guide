@@ -1,7 +1,8 @@
 import { Module, ValidationPipe } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
-import { APP_PIPE } from "@nestjs/core"
+import { APP_INTERCEPTOR, APP_PIPE } from "@nestjs/core"
 
+import { SerializeInterceptor } from "./core"
 import { UsersModule } from "./users"
 import { ReportsModule } from "./reports"
 import { UserEntity } from "./users/entities"
@@ -22,6 +23,10 @@ import { ReportEntity } from "./reports/entities"
     {
       provide: APP_PIPE,
       useFactory: () => new ValidationPipe({ whitelist: true })
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: SerializeInterceptor
     }
   ]
 })
