@@ -12,10 +12,10 @@ export class SerializeInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> {
     return next.handle().pipe(
       map((data) => {
-        if (Array.isArray(data)) {
-          return data.map(this.serialize)
+        if (!data) {
+          return data
         }
-        return this.serialize(data)
+        return Array.isArray(data) ? data.map(this.serialize) : this.serialize(data)
       })
     )
   }
