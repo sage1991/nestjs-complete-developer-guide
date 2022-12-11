@@ -1,16 +1,6 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-  Query
-} from "@nestjs/common"
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Query } from "@nestjs/common"
 
-import { CreateUserRequest, FindUserRequest, UpdateUserRequest } from "../models"
+import { FindUserRequest, UpdateUserRequest } from "../models"
 import { UsersService } from "../services"
 
 @Controller("users")
@@ -20,11 +10,6 @@ export class UsersController {
   @Get()
   findAll(@Query() request: FindUserRequest) {
     return this.service.findAll(request)
-  }
-
-  @Post()
-  create(@Body() request: CreateUserRequest) {
-    return this.service.create(request)
   }
 
   @Get("/:id")

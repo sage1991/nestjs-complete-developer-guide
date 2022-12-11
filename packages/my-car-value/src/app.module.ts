@@ -4,9 +4,10 @@ import { APP_INTERCEPTOR, APP_PIPE } from "@nestjs/core"
 
 import { SerializeInterceptor } from "./core"
 import { UsersModule } from "./users"
-import { ReportsModule } from "./reports"
 import { UserEntity } from "./users/entities"
+import { ReportsModule } from "./reports"
 import { ReportEntity } from "./reports/entities"
+import { AuthModule } from "./auth"
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { ReportEntity } from "./reports/entities"
       synchronize: true
     }),
     UsersModule,
-    ReportsModule
+    ReportsModule,
+    AuthModule
   ],
   providers: [
     {

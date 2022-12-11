@@ -1,17 +1,8 @@
 ### Find all user
 GET http://localhost:3000/users
 
-### Create a user
-POST http://localhost:3000/users
-Content-Type: application/json
-
-{
-  "email": "sonny@spurs.com",
-  "password": "12341234"
-}
-
 ### Find user
-GET http://localhost:3000/users/2
+GET http://localhost:3000/users/6
 
 ### Update  user
 PATCH http://localhost:3000/users/2
@@ -22,4 +13,4 @@ Content-Type: application/json
 }
 
 ### Delete user
-DELETE http://localhost:3000/users/3
+DELETE http://localhost:3000/users/4

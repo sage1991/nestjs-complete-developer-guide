@@ -1,0 +1,17 @@
+### Sign up
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "email": "harry@spurs.com",
+  "password": "12341234"
+}
+
+### Sign up
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "harry@spurs.com",
+  "password": "12341234"
+}
