@@ -45,4 +45,11 @@ export class AuthService {
 
     return user
   }
+
+  whoAmI(id?: number) {
+    if (typeof id !== "number") {
+      throw new NotFoundException("User not found")
+    }
+    return this.usersService.findOne(id)
+  }
 }

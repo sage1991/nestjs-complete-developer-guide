@@ -3,15 +3,21 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-  "email": "harry@spurs.com",
+  "email": "sonny@spurs.com",
   "password": "12341234"
 }
 
-### Sign up
+### Sign in
 POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "harry@spurs.com",
+  "email": "sonny@spurs.com",
   "password": "12341234"
 }
+
+### Sign out
+POST http://localhost:3000/auth/signout
+
+### Who am I?
+GET http://localhost:3000/auth
