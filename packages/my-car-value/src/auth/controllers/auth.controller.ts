@@ -2,6 +2,8 @@ import { Body, Controller, Get, HttpCode, HttpStatus, Post, Session } from "@nes
 
 import { AuthService } from "../services"
 import { SignupRequest, SigninRequest } from "../models"
+import { CurrentUser } from "../../core"
+import { User } from "../../users/models"
 
 @Controller("auth")
 export class AuthController {
@@ -29,7 +31,7 @@ export class AuthController {
   }
 
   @Get()
-  whoAmI(@Session() session: any) {
-    return this.service.whoAmI(session.userId)
+  whoAmI(@CurrentUser() user: User) {
+    return user
   }
 }

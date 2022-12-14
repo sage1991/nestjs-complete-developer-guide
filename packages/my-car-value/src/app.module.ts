@@ -1,13 +1,21 @@
-import { Module, ValidationPipe } from "@nestjs/common"
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+  ValidationPipe
+} from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { APP_INTERCEPTOR, APP_PIPE } from "@nestjs/core"
 
-import { SerializeInterceptor } from "./core"
+import { SerializeInterceptor, UserMiddleware } from "./core"
 import { UsersModule } from "./users"
 import { UserEntity } from "./users/entities"
 import { ReportsModule } from "./reports"
 import { ReportEntity } from "./reports/entities"
 import { AuthModule } from "./auth"
+
+const cookieSession = require("cookie-session")
 
 @Module({
   imports: [
@@ -32,4 +40,10 @@ import { AuthModule } from "./auth"
     }
   ]
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer
+      .apply(cookieSession({ keys: ["abc123"] }), UserMiddleware)
+      .forRoutes({ path: "*", method: RequestMethod.ALL })
+  }
+}
