@@ -1,8 +1,17 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Session } from "@nestjs/common"
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Post,
+  Session,
+  UseGuards
+} from "@nestjs/common"
 
+import { CurrentUser, AuthGuard } from "../../core"
 import { AuthService } from "../services"
 import { SignupRequest, SigninRequest } from "../models"
-import { CurrentUser } from "../../core"
 import { User } from "../../users/models"
 
 @Controller("auth")
@@ -31,6 +40,7 @@ export class AuthController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   whoAmI(@CurrentUser() user: User) {
     return user
   }
