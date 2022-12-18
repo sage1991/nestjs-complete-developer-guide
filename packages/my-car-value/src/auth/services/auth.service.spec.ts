@@ -21,7 +21,11 @@ describe("AuthService", () => {
         return Promise.resolve(user)
       },
       findOne(id: number) {
-        return Promise.resolve(users.find((user) => user.id === id))
+        const user = users.find((user) => user.id === id)
+        if (!user) {
+          return Promise.reject(new NotFoundException())
+        }
+        return Promise.resolve(user)
       },
       remove(id: number) {
         return Promise.resolve({ id, email: "", password: "" })
