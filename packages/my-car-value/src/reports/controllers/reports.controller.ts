@@ -4,6 +4,7 @@ import { ApproveReportRequest, CreateReportRequest } from "../models"
 import { ReportsService } from "../services"
 import { AuthGuard, CurrentUser } from "../../core"
 import { User } from "../../users/models"
+import { AdminGuard } from "../../core/guards/AdminGuard"
 
 @UseGuards(AuthGuard)
 @Controller("reports")
@@ -16,6 +17,7 @@ export class ReportsController {
   }
 
   @Patch("/:id")
+  @UseGuards(AdminGuard)
   approve(
     @CurrentUser() user: User,
     @Param("id", ParseIntPipe) id: number,

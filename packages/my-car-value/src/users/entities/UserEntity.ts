@@ -16,6 +16,9 @@ export class UserEntity {
   @Column()
   password: string
 
+  @Column({ default: true })
+  admin: boolean
+
   @OneToMany(() => ReportEntity, (report) => report.user)
   reports: ReportEntity[]
 }

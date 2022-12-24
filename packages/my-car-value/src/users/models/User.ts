@@ -9,4 +9,7 @@ export class User {
 
   @Exclude()
   password: string
+
+  @Expose()
+  admin: boolean
 }
