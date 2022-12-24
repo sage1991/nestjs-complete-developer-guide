@@ -1,3 +1,5 @@
 export * from "./CreateReportRequest"
 export * from "./ApproveReportRequest"
+export * from "./GetEstimateRequest"
 export * from "./Report"
+export * from "./Estimate"

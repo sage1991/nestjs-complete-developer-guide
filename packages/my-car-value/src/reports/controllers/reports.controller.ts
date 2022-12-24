@@ -1,6 +1,17 @@
-import { Body, Controller, Param, ParseIntPipe, Patch, Post, UseGuards } from "@nestjs/common"
+import {
+  ArgumentMetadata,
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query,
+  UseGuards
+} from "@nestjs/common"
 
-import { ApproveReportRequest, CreateReportRequest } from "../models"
+import { ApproveReportRequest, CreateReportRequest, GetEstimateRequest } from "../models"
 import { ReportsService } from "../services"
 import { AuthGuard, CurrentUser, AdminGuard } from "../../core"
 import { User } from "../../users/models"
@@ -23,5 +34,10 @@ export class ReportsController {
     @Body() request: ApproveReportRequest
   ) {
     return this.service.approve(user, id, request)
+  }
+
+  @Get()
+  estimate(@Query() query: GetEstimateRequest) {
+    return this.service.estimate(query)
   }
 }
