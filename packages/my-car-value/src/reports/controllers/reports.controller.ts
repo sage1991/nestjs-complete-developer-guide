@@ -2,9 +2,8 @@ import { Body, Controller, Param, ParseIntPipe, Patch, Post, UseGuards } from "@
 
 import { ApproveReportRequest, CreateReportRequest } from "../models"
 import { ReportsService } from "../services"
-import { AuthGuard, CurrentUser } from "../../core"
+import { AuthGuard, CurrentUser, AdminGuard } from "../../core"
 import { User } from "../../users/models"
-import { AdminGuard } from "../../core/guards/AdminGuard"
 
 @UseGuards(AuthGuard)
 @Controller("reports")
