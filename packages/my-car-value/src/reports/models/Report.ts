@@ -1,6 +1,4 @@
-import { Expose, Type } from "class-transformer"
-
-import { User } from "../../users/models"
+import { Expose, Transform } from "class-transformer"
 
 export class Report {
   @Expose()
@@ -28,6 +26,6 @@ export class Report {
   mileage: number
 
   @Expose()
-  @Type(() => User)
-  user: User
+  @Transform(({ obj }) => obj.user.id)
+  userId: number
 }
